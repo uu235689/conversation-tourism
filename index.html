@@ -1,0 +1,2044 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Travel Studio｜我的旅行我會說</title>
+
+<style>
+:root{
+  --ink:#243e45;
+  --cream:#fff5db;
+  --green:#477763;
+  --line:#395b51;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:#d9e5cf;
+  color:var(--ink);
+  font:16px/1.75 Arial,"Microsoft JhengHei",sans-serif;
+  background-image:repeating-linear-gradient(
+    45deg,#ffffff0b 0 3px,transparent 3px 9px
+  );
+}
+header{
+  background:#233f47;
+  color:#fff1cf;
+  border-bottom:5px solid #96ae88;
+  padding:15px max(20px,4vw);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+}
+.brand{
+  font:700 21px monospace;
+  letter-spacing:2px;
+}
+.brand small{
+  display:block;
+  font:12px/1.8 Arial;
+  letter-spacing:3px;
+  color:#c1d7b3;
+}
+main{
+  max-width:1200px;
+  margin:auto;
+  padding:26px 20px 70px;
+}
+h1,h2,h3{line-height:1.4}
+h1{font-size:34px;margin:9px 0 20px}
+h2{font-size:25px;margin-top:7px}
+h3{font-size:19px}
+.eyebrow{
+  font:700 12px/1.5 monospace;
+  letter-spacing:2px;
+  color:#547560;
+}
+.panel{
+  background:var(--cream);
+  border:3px solid var(--line);
+  box-shadow:5px 5px 0 #98ac88;
+  padding:23px;
+  margin-bottom:20px;
+}
+button,input,textarea,select{font:inherit}
+button{
+  cursor:pointer;
+  background:var(--green);
+  color:#fff6d8;
+  border:2px solid #294d40;
+  box-shadow:3px 3px 0 #29473d;
+  padding:10px 15px;
+  font-weight:bold;
+  margin:4px;
+}
+button:hover{
+  filter:brightness(1.1);
+  transform:translateY(-1px);
+}
+button:disabled{
+  opacity:.5;
+  cursor:not-allowed;
+  transform:none;
+}
+.secondary{
+  background:#ead5a8;
+  color:var(--ink);
+}
+.ghost{
+  background:transparent;
+  color:var(--ink);
+  box-shadow:none;
+  border-color:#a4b59a;
+}
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+summary:focus-visible{
+  outline:3px solid #cd8745;
+  outline-offset:3px;
+}
+input,textarea,select{
+  width:100%;
+  padding:11px;
+  border:2px solid #92a789;
+  background:#fffdf5;
+  color:var(--ink);
+  margin:6px 0 12px;
+}
+textarea{
+  min-height:100px;
+  resize:vertical;
+}
+label{
+  display:block;
+  font-weight:bold;
+  margin-top:12px;
+}
+input[type=checkbox]{
+  width:auto;
+  margin-right:8px;
+}
+small,.muted{color:#637969}
+.tabs{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin:10px 0 25px;
+}
+.tabs .selected{background:#284f46}
+.twocol{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 330px;
+  gap:22px;
+  align-items:start;
+}
+.split{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+}
+.sticky{
+  position:sticky;
+  top:16px;
+}
+.scoregrid{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:10px;
+  font-size:13px;
+}
+.pill{
+  display:inline-block;
+  padding:4px 10px;
+  background:#e7edda;
+  border:1px solid #a3b895;
+  font-size:13px;
+  margin:3px;
+}
+.npc{
+  background:#2a4650;
+  color:#fff2cf;
+  padding:18px;
+  border:3px solid #183542;
+  box-shadow:inset 0 0 0 2px #608374;
+  margin:15px 0;
+  font-size:18px;
+}
+.npc b{
+  display:block;
+  font:700 11px monospace;
+  letter-spacing:2px;
+  color:#bed9b1;
+  margin-bottom:9px;
+}
+.note{
+  background:#f3e1b1;
+  border-left:4px solid #b38d4c;
+  padding:13px;
+  margin:14px 0;
+}
+.feedback{
+  padding:14px;
+  background:#f5dfb0;
+  border:2px solid #bc9154;
+  margin:16px 0;
+  color:#7f402d;
+}
+.feedback.ok{
+  background:#e0ebce;
+  border-color:#6e9167;
+  color:#315638;
+}
+.feedback:empty{display:none}
+details{
+  background:#e8ecd6;
+  border:1px solid #adbda1;
+  padding:12px;
+  margin:13px 0;
+}
+summary{
+  cursor:pointer;
+  font-weight:bold;
+}
+hr{
+  border:0;
+  border-top:1px solid #bcc9a9;
+  margin:20px 0;
+}
+table{
+  width:100%;
+  border-collapse:collapse;
+  font-size:14px;
+}
+td,th{
+  padding:9px;
+  border-bottom:1px solid #c2cfae;
+  text-align:left;
+}
+.tag{
+  display:inline-block;
+  font-size:12px;
+  padding:3px 9px;
+  background:#d9e6c8;
+}
+.mini{font-size:13px}
+.error{color:#a24829}
+p{overflow-wrap:anywhere}
+.passport{
+  max-width:950px;
+  margin:auto;
+}
+.passport p{white-space:pre-wrap}
+.answer{
+  background:#fffaf0;
+  border-left:3px solid #8da67e;
+  padding:12px;
+  margin:12px 0;
+}
+footer{
+  font-size:12px;
+  color:#6a7d6b;
+  text-align:center;
+  padding:18px;
+}
+@media(max-width:950px){
+  .twocol{grid-template-columns:1fr}
+  .sticky{position:static}
+  .scoregrid{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:550px){
+  main{padding:17px 12px 45px}
+  .panel{padding:17px}
+  .split{grid-template-columns:1fr}
+  .scoregrid{grid-template-columns:1fr 1fr}
+  .brand{font-size:17px}
+  h1{font-size:28px}
+  .headernote{display:none}
+}
+@media print{
+  header,footer,.no-print{display:none!important}
+  body{background:white}
+  main{padding:0}
+  .panel{
+    box-shadow:none;
+    break-inside:avoid;
+  }
+  .passport{max-width:none}
+}
+</style>
+</head>
+
+<body>
+<header>
+  <div class="brand">
+    TRAVEL STUDIO
+    <small>第 一 節 練 習 · 第 二 節 驗 收</small>
+  </div>
+  <small class="headernote" style="color:#c6dbb8">
+    PLAN → PRACTISE → RESPOND
+  </small>
+</header>
+
+<main id="app"></main>
+
+<input
+  id="importFile"
+  type="file"
+  accept="application/json,.json"
+  hidden>
+
+<footer>
+  1–2人一組 · 台幣預算 · 進度儲存在目前瀏覽器 ·
+  無自動收件與錄音
+</footer>
+
+<script>
+"use strict";
+
+const KEY = "travelStudio_v1";
+const $ = id => document.getElementById(id);
+
+const E = value => String(value ?? "").replace(
+  /[&<>"']/g,
+  character => ({
+    "&":"&amp;",
+    "<":"&lt;",
+    ">":"&gt;",
+    '"':"&quot;",
+    "'":"&#39;"
+  }[character])
+);
+
+function blank(){
+  return {
+    version:1,
+    tab:"plan",
+    team:"",
+    members:["",""],
+    players:"2",
+    destination:"",
+    hotel:"",
+    dish:"",
+    budget:3000,
+    stops:[
+      {
+        place:"",
+        start:"09:00",
+        end:"10:00",
+        travel:0,
+        cost:0
+      },
+      {
+        place:"",
+        start:"10:30",
+        end:"12:00",
+        travel:30,
+        cost:0
+      },
+      {
+        place:"",
+        start:"13:00",
+        end:"15:00",
+        travel:30,
+        cost:0
+      }
+    ],
+    revision:"",
+    checked:false,
+    practice:{},
+    exam:{},
+    topic:"hotel",
+    person:0
+  };
+}
+
+let s = blank();
+let feedback = "";
+let feedbackOK = false;
+let saveOK = true;
+
+function validState(value){
+  return value &&
+    value.version === 1 &&
+    Array.isArray(value.stops) &&
+    value.stops.length >= 3 &&
+    value.stops.length <= 8 &&
+    Array.isArray(value.members) &&
+    value.members.length === 2 &&
+    ["1","2"].includes(value.players) &&
+    value.practice &&
+    value.exam &&
+    typeof value.team === "string" &&
+    typeof value.destination === "string" &&
+    typeof value.revision === "string" &&
+    ["plan","practice","exam","report"].includes(value.tab);
+}
+
+try{
+  const previous = JSON.parse(localStorage.getItem(KEY));
+
+  if(validState(previous)){
+    s = previous;
+  }
+}catch(error){
+  saveOK = false;
+}
+
+function save(){
+  try{
+    localStorage.setItem(KEY,JSON.stringify(s));
+  }catch(error){
+    saveOK = false;
+  }
+}
+
+function mins(time){
+  if(!/^\d{2}:\d{2}$/.test(time || "")){
+    return null;
+  }
+
+  const [hour,minute] = time.split(":").map(Number);
+
+  return hour < 24 && minute < 60
+    ? hour * 60 + minute
+    : null;
+}
+
+function clock(minutes){
+  return String(Math.floor(minutes/60)).padStart(2,"0") +
+    ":" +
+    String(minutes%60).padStart(2,"0");
+}
+
+function cash(number){
+  return "NT$" + Number(number).toLocaleString("en-US");
+}
+
+function diagnose(value=s){
+  const errors = [];
+  const checks = [];
+  let total = 0;
+
+  if(!value.team.trim()){
+    errors.push("填寫組名。");
+  }
+
+  if(
+    !value.members[0].trim() ||
+    (
+      value.players === "2" &&
+      !value.members[1].trim()
+    )
+  ){
+    errors.push("填寫每位組員的名字或代號。");
+  }
+
+  if(!value.destination.trim()){
+    errors.push("填寫這趟旅行的目的地。");
+  }
+
+  if(value.stops.length < 3){
+    errors.push("挑出一天至少3個行程點。");
+  }
+
+  if(
+    !Number.isFinite(Number(value.budget)) ||
+    Number(value.budget) < 0
+  ){
+    errors.push("當日預算須為非負數字。");
+  }
+
+  value.stops.forEach((stop,index) => {
+    const start = mins(stop.start);
+    const end = mins(stop.end);
+    const travel = Number(stop.travel);
+    const cost = Number(stop.cost);
+
+    if(!String(stop.place).trim()){
+      errors.push(
+        "第" + (index+1) + "站還沒有地點名稱。"
+      );
+    }
+
+    if(
+      start === null ||
+      end === null ||
+      end <= start
+    ){
+      errors.push(
+        "第" + (index+1) +
+        "站的開始／結束時間需要修正（本工具以同一天計算）。"
+      );
+    }
+
+    if(!Number.isFinite(travel) || travel < 0){
+      errors.push(
+        "第" + (index+1) + "站交通分鐘須為非負數字。"
+      );
+    }
+
+    if(!Number.isFinite(cost) || cost < 0){
+      errors.push(
+        "第" + (index+1) + "站費用須為非負數字。"
+      );
+    }else{
+      total += cost;
+    }
+
+    if(index > 0 && start !== null){
+      const previousEnd = mins(value.stops[index-1].end);
+
+      if(
+        previousEnd !== null &&
+        Number.isFinite(travel) &&
+        travel >= 0
+      ){
+        const arrival = previousEnd + travel;
+        const buffer = start - arrival;
+
+        if(buffer < 0){
+          errors.push(
+            "第" + (index+1) +
+            "站來不及：前站結束＋交通要到" +
+            clock(arrival) +
+            "，比預定開始晚" +
+            (-buffer) + "分鐘。"
+          );
+        }else{
+          checks.push(
+            "第" + (index+1) +
+            "站：交通後還有" +
+            buffer + "分鐘緩衝。"
+          );
+        }
+      }
+    }
+  });
+
+  if(total > Number(value.budget)){
+    errors.push(
+      "目前費用" + cash(total) +
+      "，超過預算" +
+      cash(total-Number(value.budget)) + "。"
+    );
+  }
+
+  return {errors,checks,total};
+}
+
+/* ────────── 英文練習內容 ────────── */
+
+const TOPICS = {
+  hotel:{
+    name:"飯店入住",
+    need:"提出入住需求，說出訂房姓名。",
+    npc:"Welcome! How can I help you?",
+    starter:
+      "I have a reservation under ____. I would like to check in.",
+
+    normal:[
+      /\b(reservation|booking|check\s*in)\b/i
+    ],
+
+    normalTip:
+      "補上 reservation、booking 或 check in，讓櫃檯知道你要入住。",
+
+    events:[
+      {
+        id:"missing",
+        prompt:
+          "I cannot find your reservation. Do you have a confirmation?",
+        goal:"提供訂房資料，請對方再次確認。",
+        checks:[
+          /\b(booking|reservation|confirmation|name|check)\b/i
+        ],
+        model:
+          "Could you check my booking number? I have the confirmation here."
+      },
+      {
+        id:"room",
+        prompt:
+          "Your room is not ready. Would you like to wait or leave your bags here?",
+        goal:"選擇等待或寄放行李，並詢問一項相關資訊。",
+        checks:[
+          /\b(wait|bags?|luggage|ready|time|when)\b/i
+        ],
+        model:
+          "Can I leave my bags here? When will the room be ready?"
+      },
+      {
+        id:"bath",
+        prompt:
+          "The private bathroom is out of order. We have another room with a shared bathroom.",
+        goal:"詢問替代方案或確認衛浴。",
+        checks:[
+          /\b(room|bathroom|options?|another|private|shared)\b/i
+        ],
+        model:
+          "What are my options? Is there another room with a private bathroom?"
+      }
+    ]
+  },
+
+  food:{
+    name:"餐廳點餐",
+    need:"點出一項餐點，讓店員知道你的需求。",
+    npc:"Hello! What would you like to order?",
+    starter:"I would like ____, please.",
+
+    normal:[
+      /\b(would\s+like|can\s+i\s+have|could\s+i\s+have|order|i.ll\s+have)\b/i
+    ],
+
+    normalTip:
+      "用 I would like… / Can I have… 等說法提出點餐需求。",
+
+    events:[
+      {
+        id:"soldout",
+        prompt:
+          "Sorry, that dish is sold out. Would you like something else?",
+        goal:"詢問其他餐點，或改點另一道。",
+        checks:[
+          /\b(else|instead|other|another|menu|have)\b/i
+        ],
+        model:
+          "What else do you have? Could I have the noodles instead?"
+      },
+      {
+        id:"peanut",
+        prompt:
+          "This dish contains peanuts. Do you have any food allergies?",
+        goal:"說明對花生過敏，詢問合適餐點。",
+        checks:[
+          /\b(allergic|allergy)\b/i,
+          /\bpeanuts?\b/i
+        ],
+        model:
+          "I am allergic to peanuts. Is there a dish without peanuts?"
+      },
+      {
+        id:"wait",
+        prompt:
+          "That dish takes forty minutes. Do you have enough time?",
+        goal:"回應等待時間，決定等候或改點。",
+        checks:[
+          /\b(wait|minutes?|time|faster|quick|another|instead)\b/i
+        ],
+        model:
+          "I do not have much time. Is there another dish that is faster?"
+      }
+    ]
+  },
+
+  directions:{
+    name:"問路與交通",
+    need:"禮貌問路，說清楚行程中的目的地。",
+    npc:"Hi! Do you need some help?",
+    starter:"Excuse me. How can I get to ____?",
+
+    normal:[
+      /\b(how|where|way|directions?)\b/i
+    ],
+
+    normalTip:
+      "用 How can I get to…? / Where is…? 詢問方向或位置。",
+
+    events:[
+      {
+        id:"closed",
+        prompt:
+          "The bridge is closed today. You cannot walk that way.",
+        goal:"詢問另一條路或替代交通。",
+        checks:[
+          /\b(another|other|bus|taxi|train|alternative|open)\b/i
+        ],
+        model:
+          "Is there another way? Can I get there by bus?"
+      },
+      {
+        id:"pier",
+        prompt:
+          "Do you mean East Pier or West Pier? They are different places.",
+        goal:"再次說清楚是哪個目的地。",
+        checks:[
+          /\b(east|west)\s+pier\b/i
+        ],
+        model:
+          "I mean West Pier. Which bus goes there?"
+      },
+      {
+        id:"last",
+        prompt:
+          "The last bus leaves in ten minutes. It takes fifteen minutes to walk to the stop.",
+        goal:"發現趕不上，詢問其他方式。",
+        checks:[
+          /\b(another|other|taxi|next|alternative|different)\b/i
+        ],
+        model:
+          "I may miss the last bus. Is there another way to get there?"
+      }
+    ]
+  },
+
+  shopping:{
+    name:"購物與換貨",
+    need:"說明商品問題，提出換貨需求。",
+    npc:"Hello. Is there a problem with the item?",
+    starter:"This ____ is broken. Can I exchange it?",
+
+    normal:[
+      /\b(broken|damaged|faulty|problem)\b/i,
+      /\b(exchange|replace|replacement)\b/i
+    ],
+
+    normalTip:
+      "補上商品問題（broken等）和換貨需求（exchange等）。",
+
+    events:[
+      {
+        id:"receipt",
+        prompt:
+          "Do you have the receipt? We can exchange it, but we cannot give a refund without a receipt.",
+        goal:"回應是否有收據，確認換貨。",
+        checks:[
+          /\b(receipt|exchange|replace|another)\b/i
+        ],
+        model:
+          "I do not have the receipt. Can I exchange it for another one?"
+      },
+      {
+        id:"colour",
+        prompt:
+          "We do not have another one in this colour. Would a different colour be OK?",
+        goal:"接受其他顏色或詢問選項。",
+        checks:[
+          /\b(colou?r|another|different|options?|fine|okay|ok|yes|no)\b/i
+        ],
+        model:
+          "A different colour is fine. What colours do you have?"
+      },
+      {
+        id:"refund",
+        prompt:
+          "We can offer an exchange today. A refund takes three working days.",
+        goal:"在換貨與等待退款之間選擇，說明需求。",
+        checks:[
+          /\b(exchange|refund|wait|days?|another)\b/i
+        ],
+        model:
+          "I would like an exchange, please. I am leaving tomorrow."
+      }
+    ]
+  }
+};
+
+function member(){
+  return s.members[s.person] || "組員"+(s.person+1);
+}
+
+function practiceKey(){
+  return s.person + "_" + s.topic;
+}
+
+function currentPractice(){
+  const key = practiceKey();
+
+  if(!s.practice[key]){
+    s.practice[key] = {
+      normal:"",
+      reply:"",
+      passedNormal:false,
+      passedReply:false,
+      event:0,
+      spoken:false,
+      hints:0
+    };
+  }
+
+  return s.practice[key];
+}
+
+function englishWords(text){
+  return (text.match(/[a-z]+(?:'[a-z]+)?/ig) || []).length;
+}
+
+function evaluateReply(text,patterns){
+  return englishWords(text) >= 3 &&
+    patterns.every(pattern => pattern.test(text));
+}
+
+/* ────────── 共用畫面元件 ────────── */
+
+function B(text,action,value="",className="",disabled=false){
+  return '<button data-act="' + action +
+    '" data-val="' + E(value) +
+    '" class="' + className + '"' +
+    (disabled ? " disabled" : "") +
+    ">" + text + "</button>";
+}
+
+function input(path,label,value,type="text",help=""){
+  return '<label>' + label +
+    '<input data-bind="' + path +
+    '" type="' + type +
+    '" value="' + E(value) + '"' +
+    (type === "number" ? ' min="0"' : "") +
+    "></label>" +
+    (help ? "<small>"+help+"</small>" : "");
+}
+
+function tabs(){
+  const items = [
+    ["plan","01 行程健檢"],
+    ["practice","02 英文練習"],
+    ["exam","03 第二節驗收"],
+    ["report","學習紀錄"]
+  ];
+
+  return '<div class="tabs no-print">' +
+    items.map(([id,text]) =>
+      B(
+        text,
+        "tab",
+        id,
+        s.tab === id ? "selected" : "secondary"
+      )
+    ).join("") +
+    "</div>";
+}
+
+function render(){
+  const views = {
+    plan:planView,
+    practice:practiceView,
+    exam:examView,
+    report:reportView
+  };
+
+  $("app").innerHTML =
+    '<div class="eyebrow">YOUR ITINERARY · YOUR WORDS</div>' +
+    "<h1>把自己的旅行，說成英文。</h1>" +
+    tabs() +
+    views[s.tab]() +
+    (
+      !saveOK
+        ? '<p class="note">瀏覽器無法儲存，請完成後立即下載紀錄。</p>'
+        : ""
+    );
+}
+
+/* ────────── 第一節：行程健檢 ────────── */
+
+function planView(){
+  const result = diagnose();
+
+  return `
+    <div class="twocol">
+      <section>
+        <div class="panel">
+          <h2>第一節｜先讓行程走得通</h2>
+
+          <p>
+            拿出原本紙本行程，只挑
+            <b>其中一天、3–5個地點</b>
+            放進網頁，不需要重打整趟旅行。
+            依健檢結果修正，再把改動補回紙本。
+          </p>
+
+          ${input("team","組名",s.team)}
+
+          <div class="split">
+            <label>
+              人數
+              <select data-bind="players">
+                <option value="1" ${s.players === "1" ? "selected" : ""}>
+                  1人
+                </option>
+                <option value="2" ${s.players === "2" ? "selected" : ""}>
+                  2人
+                </option>
+              </select>
+            </label>
+
+            ${input("destination","旅行目的地",s.destination)}
+          </div>
+
+          <div class="split">
+            ${input("members.0","組員A／個人名字或代號",s.members[0])}
+            ${
+              s.players === "2"
+                ? input("members.1","組員B名字或代號",s.members[1])
+                : ""
+            }
+          </div>
+
+          <div class="split">
+            ${input("hotel","預計住宿名稱（英文或拼音）",s.hotel)}
+            ${input("dish","想點的餐點（英文）",s.dish)}
+          </div>
+
+          ${input(
+            "budget",
+            "這一天的預算（折算台幣）",
+            s.budget,
+            "number"
+          )}
+
+          <p class="mini">
+            只依你填的時間、交通分鐘和費用做計算；
+            地點的真實距離與營業時間，
+            請依你原本查到的資料確認。
+          </p>
+        </div>
+
+        ${
+          s.stops.map((stop,index) => `
+            <div class="panel stop">
+              <span class="eyebrow">STOP ${index+1}</span>
+
+              ${input(
+                "stops."+index+".place",
+                "地點名稱（英文或拼音方便練習）",
+                stop.place
+              )}
+
+              <div class="split">
+                ${input(
+                  "stops."+index+".start",
+                  "開始時間",
+                  stop.start,
+                  "time"
+                )}
+                ${input(
+                  "stops."+index+".end",
+                  "結束時間",
+                  stop.end,
+                  "time"
+                )}
+              </div>
+
+              <div class="split">
+                ${input(
+                  "stops."+index+".travel",
+                  index === 0
+                    ? "抵達第一站前交通分鐘（不納入前站檢查）"
+                    : "上一站結束後，到這站的交通分鐘",
+                  stop.travel,
+                  "number"
+                )}
+
+                ${input(
+                  "stops."+index+".cost",
+                  "這站費用，含前往此站的交通（台幣）",
+                  stop.cost,
+                  "number"
+                )}
+              </div>
+
+              ${
+                s.stops.length > 3
+                  ? B("刪除這一站","remove",String(index),"ghost")
+                  : ""
+              }
+            </div>
+          `).join("")
+        }
+
+        ${B(
+          "＋新增一站",
+          "add",
+          "",
+          "secondary",
+          s.stops.length >= 8
+        )}
+      </section>
+
+      <aside>
+        <div class="panel sticky">
+          <span class="eyebrow">ITINERARY CHECK</span>
+          <h2>行程健檢</h2>
+
+          <p>
+            目前費用 <b>${cash(result.total)}</b>／
+            預算 ${cash(s.budget)}
+          </p>
+
+          ${B("檢查時間與費用","diagnose")}
+
+          <div id="diagnosis">
+            ${
+              s.checked
+                ? diagnosisHTML(result)
+                : '<p class="muted">完成欄位後按健檢。修改行程後請重新檢查。</p>'
+            }
+          </div>
+
+          <label>
+            我們改了什麼？為什麼？
+            <textarea
+              data-bind="revision"
+              placeholder="寫出具體改動或保留原安排的理由。">${E(s.revision)}</textarea>
+          </label>
+
+          ${B("完成修正，進英文練習 →","beginPractice")}
+
+          <hr>
+
+          <p class="mini">
+            本工具儲存在目前瀏覽器。
+            換裝置時可下載備份，再匯入接續。
+          </p>
+
+          ${B("下載備份","backup","","secondary")}
+          ${B("匯入備份","import","","secondary")}
+          ${B("載入試玩範例","demo","","ghost")}
+        </div>
+      </aside>
+    </div>
+  `;
+}
+
+function diagnosisHTML(result){
+  const message = result.errors.length
+    ? '<div class="feedback">' +
+      result.errors.map(E).join("<br>") +
+      "</div>"
+    : '<div class="feedback ok">時間與費用計算沒有發現衝突。</div>';
+
+  return message +
+    '<div class="mini">' +
+    result.checks.map(E).join("<br>") +
+    "</div>";
+}
+
+function ready(){
+  const result = diagnose();
+
+  return !result.errors.length &&
+    s.checked &&
+    s.revision.trim().length >= 5;
+}
+
+function personSelect(showTopic=true){
+  return `
+    <div class="split">
+      <label>
+        現在由誰練習？
+        <select data-action="person">
+          ${
+            s.members.slice(0,Number(s.players)).map((name,index) =>
+              '<option value="' + index + '"' +
+              (s.person === index ? " selected" : "") +
+              ">" + E(name || "組員"+(index+1)) + "</option>"
+            ).join("")
+          }
+        </select>
+      </label>
+
+      ${
+        showTopic
+          ? `
+            <label>
+              情境
+              <select data-action="topic">
+                ${
+                  Object.entries(TOPICS).map(([id,topic]) =>
+                    '<option value="' + id + '"' +
+                    (s.topic === id ? " selected" : "") +
+                    ">" + topic.name + "</option>"
+                  ).join("")
+                }
+              </select>
+            </label>
+          `
+          : ""
+      }
+    </div>
+  `;
+}
+
+/* ────────── 第一節：英文練習 ────────── */
+
+function practiceView(){
+  if(!ready()){
+    return `
+      <div class="panel">
+        <h2>先把行程準備好</h2>
+        <p>
+          請完成行程欄位、健檢，以及具體修正說明，
+          再開始練習。
+        </p>
+        ${B("回行程健檢","tab","plan")}
+      </div>
+    `;
+  }
+
+  const topic = TOPICS[s.topic];
+  const practice = currentPractice();
+  const event = topic.events[practice.event];
+
+  const context = s.topic === "hotel"
+    ? (s.hotel || "your hotel")
+    : s.topic === "food"
+      ? (s.dish || "a dish from your menu")
+      : s.stops[1].place;
+
+  return `
+    <div class="twocol">
+      <section>
+        <div class="panel">
+          <h2>第一節｜拿自己的行程開口</h2>
+
+          ${personSelect()}
+
+          <p class="note">
+            目前練習者：<b>${E(member())}</b>。
+            每人至少練兩種情境，
+            先處理正常需求，再回應突發狀況。
+            兩人請交換操作與發言角色。
+          </p>
+
+          <p>
+            你們的情境資料：<b>${E(context)}</b>。
+            請把自己的地點、姓名、餐點或時間放進英文裡。
+          </p>
+
+          <h3>Round 1｜你主動提出需求</h3>
+
+          <div class="npc">
+            <b>STAFF / ${topic.name}</b>
+            ${topic.npc}
+          </div>
+
+          <p>${topic.need}</p>
+
+          <label>
+            先說一次，再寫下你會說的英文
+            <textarea
+              data-practice="normal"
+              placeholder="用英文表達，不只填單字。">${E(practice.normal)}</textarea>
+          </label>
+
+          <details data-help="normal">
+            <summary>需要單字或句型？</summary>
+            <p>${topic.starter}</p>
+            <p class="mini">
+              可以換說法。姓名與地名可用你們自己的行程資料。
+            </p>
+          </details>
+
+          ${B("檢查第一輪表達","normal")}
+
+          ${
+            practice.passedNormal
+              ? '<span class="tag">第一輪已練習</span>'
+              : ""
+          }
+        </div>
+
+        <div class="panel">
+          <h3>Round 2｜對方的回應改變了</h3>
+
+          ${
+            practice.passedNormal
+              ? `
+                <div class="npc">
+                  <b>STAFF / NEW SITUATION</b>
+                  ${event.prompt}
+                </div>
+
+                <p>${event.goal}</p>
+
+                <label>
+                  這次你會怎麼接話？
+                  <textarea data-practice="reply">${E(practice.reply)}</textarea>
+                </label>
+
+                <details data-help="reply">
+                  <summary>查看回應方向與示例</summary>
+                  <p>${event.model}</p>
+                  <p>示例是支援，請再依自己的情境調整。</p>
+                </details>
+
+                <label>
+                  <input
+                    type="checkbox"
+                    data-practice="spoken"
+                    ${practice.spoken ? "checked" : ""}>
+                  我已先回應出聲，再寫下這句英文。
+                </label>
+
+                ${B("檢查第二輪表達","reply")}
+                ${B("換一個突發狀況","changeEvent","","secondary")}
+              `
+              : "<p>完成第一輪後，NPC才會說明新狀況。</p>"
+          }
+
+          <p
+            id="feedback"
+            class="feedback ${feedbackOK ? "ok" : ""}"
+            role="status">${E(feedback)}</p>
+        </div>
+      </section>
+
+      <aside>
+        <div class="panel sticky">
+          <span class="eyebrow">PRACTICE RECORD</span>
+          <h3>每人兩種情境</h3>
+
+          ${progressHTML()}
+
+          <p class="mini">
+            練習回饋只看關鍵表達是否出現；
+            完整英文語意、聽懂程度與口說清楚度由真人驗收。
+          </p>
+
+          ${B("準備第二節驗收 →","tab","exam")}
+          ${B("下載備份","backup","","secondary")}
+        </div>
+      </aside>
+    </div>
+  `;
+}
+
+function completedTopics(person){
+  return Object.entries(TOPICS)
+    .filter(([id]) => {
+      const practice = s.practice[person+"_"+id];
+
+      return practice &&
+        practice.passedNormal &&
+        practice.passedReply &&
+        practice.spoken;
+    })
+    .map(([id]) => id);
+}
+
+function progressHTML(){
+  return s.members
+    .slice(0,Number(s.players))
+    .map((name,index) =>
+      "<p><b>" + E(name || "組員"+(index+1)) + "</b><br>" +
+      Object.entries(TOPICS).map(([id,topic]) => {
+        const practice = s.practice[index+"_"+id];
+
+        const done =
+          practice?.passedNormal &&
+          practice?.passedReply &&
+          practice?.spoken;
+
+        return '<span class="pill">' +
+          (done ? "✓ " : "□ ") +
+          topic.name +
+          "</span>";
+      }).join("") +
+      "</p>"
+    ).join("");
+}
+
+function checkPractice(kind){
+  const topic = TOPICS[s.topic];
+  const practice = currentPractice();
+
+  if(kind === "normal"){
+    if(!evaluateReply(practice.normal,topic.normal)){
+      feedback = topic.normalTip +
+        " 請至少寫出一個簡單英文句子。";
+
+      feedbackOK = false;
+    }else{
+      practice.passedNormal = true;
+      feedback =
+        "關鍵需求已出現。現在讀NPC的下一句，再決定怎麼回應。";
+      feedbackOK = true;
+    }
+  }else{
+    const event = topic.events[practice.event];
+
+    if(!practice.spoken){
+      feedback = "先把這句英文說出來，再勾選確認。";
+      feedbackOK = false;
+    }else if(!evaluateReply(practice.reply,event.checks)){
+      feedback =
+        "再想一下：" + event.goal +
+        " 可開啟提示，補上能讓對方處理問題的關鍵表達。";
+
+      feedbackOK = false;
+    }else{
+      practice.passedReply = true;
+      feedback =
+        "已完成這種情境的練習。" +
+        "兩人組請交換，或改練第二種情境。";
+
+      feedbackOK = true;
+    }
+  }
+
+  save();
+  render();
+}
+
+/* ────────── 第二節：口說驗收 ────────── */
+
+function examView(){
+  if(!ready()){
+    return `
+      <div class="panel">
+        <h2>先完成第一節的行程修正</h2>
+        ${B("回行程健檢","tab","plan")}
+      </div>
+    `;
+  }
+
+  const person = s.person;
+  const assessment = s.exam[person];
+
+  return `
+    <div class="panel">
+      <span class="eyebrow">LESSON 2 / SPEAK & RESPOND</span>
+      <h2>第二節｜每人自己的口說驗收</h2>
+
+      ${personSelect(false)}
+
+      <p>
+        驗收會從這位組員練過的情境中抽出一種。
+        先主動說出需求，
+        再請扮演服務人員的人展開追問。
+        這一頁不顯示參考句。
+      </p>
+
+      <p class="note">
+        配對互驗時，一人當旅客、一人當服務人員，再交換。
+        老師抽查時，請讓老師扮演服務人員。
+        評分欄由實際聽過的人填寫。
+      </p>
+
+      ${
+        !assessment
+          ? `
+            <p>
+              這位組員已完成
+              ${completedTopics(person).length}
+              種情境，需要至少2種。
+            </p>
+
+            ${B(
+              "抽出這位旅客的驗收題",
+              "drawExam",
+              "",
+              "",
+              completedTopics(person).length < 2
+            )}
+          `
+          : examCard(assessment,person)
+      }
+    </div>
+  `;
+}
+
+function drawExam(){
+  const choices = completedTopics(s.person);
+
+  if(choices.length < 2){
+    feedback = "每人先完成兩種情境。";
+    return;
+  }
+
+  const topic = choices[
+    Math.floor(Math.random()*choices.length)
+  ];
+
+  const events = TOPICS[topic].events;
+  const practiced = s.practice[s.person+"_"+topic].event;
+
+  const options = events
+    .map((event,index) => index)
+    .filter(index => index !== practiced);
+
+  const event = options[
+    Math.floor(Math.random()*options.length)
+  ];
+
+  s.exam[s.person] = {
+    topic,
+    event,
+    normal:"",
+    reply:"",
+    partner:"",
+    scores:{
+      task:"",
+      listen:"",
+      adapt:"",
+      clear:"",
+      personal:""
+    },
+    comment:"",
+    confirmed:false
+  };
+
+  save();
+  render();
+}
+
+function examCard(assessment,person){
+  const topic = TOPICS[assessment.topic];
+  const event = topic.events[assessment.event];
+
+  const rubric = {
+    task:"主動說清楚需求",
+    listen:"聽懂對方詢問的重點",
+    adapt:"面對變動能接話",
+    clear:"用字與發音可理解",
+    personal:"套用自己的行程資訊"
+  };
+
+  return `
+    <span class="tag">
+      ${E(s.members[person])} · ${topic.name}
+    </span>
+
+    <h3>旅客任務</h3>
+    <p>${topic.need} 請套用自己的行程。</p>
+
+    <div class="npc">
+      <b>STAFF / OPENING</b>
+      ${topic.npc}
+    </div>
+
+    <p>旅客先說出需求，再展開下一張追問卡。</p>
+
+    <details>
+      <summary>服務人員：展開臨時追問</summary>
+      <div class="npc">${event.prompt}</div>
+      <p class="mini">
+        先讓旅客聽你讀一次；若需要，可再讀一次。
+        旅客應依這一句的意思回應。
+      </p>
+    </details>
+
+    <div class="split">
+      <label>
+        旅客實際說出的第一段英文
+        <textarea data-exam="normal">${E(assessment.normal)}</textarea>
+      </label>
+
+      <label>
+        臨時追問後，旅客實際回應的英文
+        <textarea data-exam="reply">${E(assessment.reply)}</textarea>
+      </label>
+    </div>
+
+    <p class="mini">
+      請先口說再記錄。
+      網頁不錄音，也不自動判定口說能力。
+    </p>
+
+    <h3>驗收紀錄｜每項0–4分，共20分</h3>
+
+    <p>
+      0：尚未做到；1：大量協助；2：部分完成；
+      3：大致獨立完成；4：獨立且清楚完成。
+    </p>
+
+    ${inputExam(
+      "partner",
+      "驗收者／同儕名字或代號",
+      assessment.partner
+    )}
+
+    <div class="scoregrid">
+      ${
+        Object.entries(rubric).map(([id,text]) => `
+          <label>
+            ${text}
+            <select data-score="${id}">
+              <option value="">請選分數</option>
+              ${
+                [0,1,2,3,4].map(number =>
+                  '<option value="' + number + '"' +
+                  (
+                    String(assessment.scores[id]) === String(number)
+                      ? " selected"
+                      : ""
+                  ) +
+                  ">" + number + "</option>"
+                ).join("")
+              }
+            </select>
+          </label>
+        `).join("")
+      }
+    </div>
+
+    <label>
+      具體回饋：哪一句做得好？下一次要改哪一點？
+      <textarea data-exam="comment">${E(assessment.comment)}</textarea>
+    </label>
+
+    <label>
+      <input
+        type="checkbox"
+        data-exam="confirmed"
+        ${assessment.confirmed ? "checked" : ""}>
+      驗收者確實聽過這位旅客的兩段口說。
+    </label>
+
+    ${B("儲存驗收紀錄","saveExam")}
+    ${B("下載本組行程與驗收紀錄","download","","secondary")}
+
+    <p
+      id="examFeedback"
+      class="feedback"
+      role="status">${E(feedback)}</p>
+  `;
+}
+
+function inputExam(id,label,value){
+  return "<label>" + label +
+    '<input data-exam="' + id +
+    '" value="' + E(value) + '"></label>';
+}
+
+function saveExam(){
+  const assessment = s.exam[s.person];
+
+  if(
+    !assessment ||
+    !assessment.normal.trim() ||
+    !assessment.reply.trim() ||
+    !assessment.partner.trim() ||
+    !assessment.comment.trim() ||
+    !assessment.confirmed ||
+    Object.values(assessment.scores).some(value => value === "")
+  ){
+    feedback =
+      "請補齊兩段英文、驗收者、各項分數與具體回饋，" +
+      "並確認已聽過口說。";
+  }else{
+    assessment.saved = true;
+
+    const score = Object.values(assessment.scores)
+      .reduce((sum,value) => sum + Number(value),0);
+
+    feedback =
+      "已儲存這位旅客的驗收紀錄：" +
+      score + " / 20。";
+  }
+
+  save();
+  render();
+}
+
+/* ────────── 匯出與學習紀錄 ────────── */
+
+function reportView(){
+  return `
+    <div class="panel no-print">
+      <h2>行程與英文學習紀錄</h2>
+
+      ${B("下載紀錄HTML","download")}
+      ${B("列印／存成PDF","print","","secondary")}
+      ${B("下載可匯入的備份","backup","","secondary")}
+      ${B("匯入備份","import","","secondary")}
+
+      <p class="mini">
+        請依老師指定方式繳交；
+        這個版本沒有自動收件或跨裝置同步。
+      </p>
+    </div>
+
+    ${reportHTML()}
+  `;
+}
+
+function reportHTML(){
+  const result = diagnose();
+
+  return `
+    <article class="passport">
+      <div class="panel">
+        <h2>${E(s.team)}｜${E(s.destination)}</h2>
+
+        <p>組員：${
+          s.members.slice(0,Number(s.players)).map(E).join("、")
+        }<br>當日預算 ${cash(s.budget)}；已列費用 ${cash(result.total)}</p>
+
+        <table>
+          <tr>
+            <th>地點</th>
+            <th>停留</th>
+            <th>交通</th>
+            <th>費用</th>
+          </tr>
+
+          ${
+            s.stops.map(stop => `
+              <tr>
+                <td>${E(stop.place)}</td>
+                <td>${E(stop.start)}–${E(stop.end)}</td>
+                <td>${E(stop.travel)}分鐘</td>
+                <td>${cash(stop.cost)}</td>
+              </tr>
+            `).join("")
+          }
+        </table>
+
+        <h3>我們做的修正與理由</h3>
+        <p>${E(s.revision)}</p>
+      </div>
+
+      ${
+        s.members.slice(0,Number(s.players)).map((name,index) => `
+          <section class="panel">
+            <h2>${E(name)} 的英文練習</h2>
+
+            ${
+              Object.entries(TOPICS)
+                .filter(([id]) => s.practice[index+"_"+id])
+                .map(([id,topic]) => {
+                  const practice = s.practice[index+"_"+id];
+
+                  return `
+                    <div class="answer">
+                      <b>${topic.name}</b>
+                      <p>NPC：${E(topic.npc)}<br>我的回應：${E(practice.normal)}<br>突發狀況：${E(topic.events[practice.event].prompt)}<br>我的接話：${E(practice.reply)}</p>
+                      <small>
+                        ${practice.passedReply ? "已練習" : "尚未完成"}
+                      </small>
+                    </div>
+                  `;
+                }).join("")
+            }
+
+            ${examReport(index)}
+          </section>
+        `).join("")
+      }
+    </article>
+  `;
+}
+
+function examReport(person){
+  const assessment = s.exam[person];
+
+  if(!assessment){
+    return "<h3>第二節驗收：尚未開始</h3>";
+  }
+
+  const total = Object.values(assessment.scores)
+    .reduce((sum,value) => sum + Number(value || 0),0);
+
+  return `
+    <h3>
+      第二節驗收：${TOPICS[assessment.topic].name}
+    </h3>
+
+    <p>追問：${E(
+      TOPICS[assessment.topic].events[assessment.event].prompt
+    )}<br>第一段英文：${E(assessment.normal)}<br>追問回應：${E(assessment.reply)}<br>驗收者：${E(assessment.partner)}</p>
+
+    <p>需求 ${E(assessment.scores.task)}／聽懂 ${E(assessment.scores.listen)}／接話 ${E(assessment.scores.adapt)}／清楚 ${E(assessment.scores.clear)}／套用行程 ${E(assessment.scores.personal)}<br>合計 ${total} / 20${
+      assessment.saved
+        ? "（已確認紀錄）"
+        : "（尚未完成確認）"
+    }</p>
+
+    <p>${E(assessment.comment)}</p>
+  `;
+}
+
+function exportFile(name,text,type){
+  const url = URL.createObjectURL(
+    new Blob([text],{type})
+  );
+
+  const link = document.createElement("a");
+
+  link.href = url;
+  link.download = name;
+
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+
+  setTimeout(() => URL.revokeObjectURL(url),1000);
+}
+
+function download(){
+  const html = `
+    <!doctype html>
+    <html lang="zh-Hant">
+    <head>
+      <meta charset="utf-8">
+      <title>Travel Studio Record</title>
+      <style>
+        body{
+          font:16px/1.8 Arial,sans-serif;
+          color:#294c44;
+          max-width:950px;
+          margin:auto;
+          padding:20px;
+        }
+        .panel{
+          border:1px solid #aec0a4;
+          margin:15px 0;
+          padding:20px;
+        }
+        p{white-space:pre-wrap}
+        table{width:100%;border-collapse:collapse}
+        td,th{padding:8px;border-bottom:1px solid #ddd}
+        .answer{
+          background:#f4f5e9;
+          padding:12px;
+          margin:12px 0;
+        }
+      </style>
+    </head>
+    <body>${reportHTML()}</body>
+    </html>
+  `;
+
+  exportFile(
+    "Travel_Studio_Record.html",
+    html,
+    "text/html;charset=utf-8"
+  );
+}
+
+/* ────────── 資料更新與操作 ────────── */
+
+function setBind(path,value){
+  const [field,index,property] = path.split(".");
+
+  if(
+    field === "stops" &&
+    s.stops[Number(index)] &&
+    ["place","start","end","travel","cost"].includes(property)
+  ){
+    s.stops[Number(index)][property] = value;
+    s.checked = false;
+
+  }else if(
+    field === "members" &&
+    ["0","1"].includes(index)
+  ){
+    s.members[Number(index)] = value;
+
+  }else if(
+    [
+      "team","players","destination",
+      "hotel","dish","budget","revision"
+    ].includes(field)
+  ){
+    s[field] = value;
+
+    if(
+      ["budget","destination","team","players"].includes(field)
+    ){
+      s.checked = false;
+    }
+  }
+
+  save();
+}
+
+function doAction(action,value){
+  feedback = "";
+
+  if(action === "tab"){
+    s.tab = value;
+    save();
+    render();
+    window.scrollTo(0,0);
+
+  }else if(action === "diagnose"){
+    s.checked = true;
+    save();
+    render();
+
+  }else if(action === "beginPractice"){
+    const result = diagnose();
+
+    if(
+      result.errors.length ||
+      !s.checked ||
+      s.revision.trim().length < 5
+    ){
+      $("diagnosis").innerHTML =
+        diagnosisHTML(result) +
+        '<p class="error">' +
+        "請完成健檢與具體修正／保留安排的理由。" +
+        "</p>";
+
+      return;
+    }
+
+    s.tab = "practice";
+    save();
+    render();
+    window.scrollTo(0,0);
+
+  }else if(action === "add"){
+    if(s.stops.length < 8){
+      s.stops.push({
+        place:"",
+        start:"16:00",
+        end:"17:00",
+        travel:30,
+        cost:0
+      });
+
+      s.checked = false;
+      save();
+      render();
+    }
+
+  }else if(action === "remove"){
+    if(s.stops.length > 3){
+      s.stops.splice(Number(value),1);
+      s.checked = false;
+      save();
+      render();
+    }
+
+  }else if(action === "normal" || action === "reply"){
+    checkPractice(action);
+
+  }else if(action === "changeEvent"){
+    const practice = currentPractice();
+
+    practice.event =
+      (practice.event+1) % TOPICS[s.topic].events.length;
+
+    practice.reply = "";
+    practice.spoken = false;
+    practice.passedReply = false;
+
+    save();
+    render();
+
+  }else if(action === "drawExam"){
+    drawExam();
+
+  }else if(action === "saveExam"){
+    saveExam();
+
+  }else if(action === "download"){
+    download();
+
+  }else if(action === "backup"){
+    exportFile(
+      "Travel_Studio_Backup.json",
+      JSON.stringify(s,null,2),
+      "application/json"
+    );
+
+  }else if(action === "import"){
+    $("importFile").click();
+
+  }else if(action === "print"){
+    window.print();
+
+  }else if(action === "demo"){
+    if(!confirm(
+      "載入範例會取代這台裝置目前的行程與練習紀錄。確定嗎？"
+    )){
+      return;
+    }
+
+    s = blank();
+    s.team = "試玩旅行團";
+    s.members = ["Alex","Jamie"];
+    s.destination = "Seoul";
+    s.hotel = "Maple Hotel";
+    s.dish = "chicken rice";
+
+    s.stops = [
+      {
+        place:"Maple Hotel",
+        start:"09:00",
+        end:"09:30",
+        travel:0,
+        cost:0
+      },
+      {
+        place:"City Market",
+        start:"10:00",
+        end:"11:30",
+        travel:20,
+        cost:300
+      },
+      {
+        place:"History Museum",
+        start:"13:00",
+        end:"15:00",
+        travel:30,
+        cost:450
+      }
+    ];
+
+    s.revision =
+      "把第二站開始時間改晚，保留10分鐘交通緩衝。";
+
+    s.checked = true;
+
+    save();
+    render();
+  }
+}
+
+/* ────────── 畫面事件 ────────── */
+
+document.addEventListener("click",event => {
+  const button = event.target.closest("button[data-act]");
+
+  if(button && !button.disabled){
+    doAction(
+      button.dataset.act,
+      button.dataset.val || ""
+    );
+  }
+});
+
+document.addEventListener("input",event => {
+  const element = event.target;
+
+  if(element.dataset.bind){
+    setBind(element.dataset.bind,element.value);
+
+    if(
+      $("diagnosis") &&
+      element.dataset.bind !== "revision"
+    ){
+      $("diagnosis").innerHTML =
+        '<p class="muted">資料已修改，請重新健檢。</p>';
+    }
+  }
+
+  if(element.dataset.practice){
+    const practice = currentPractice();
+
+    practice[element.dataset.practice] =
+      element.type === "checkbox"
+        ? element.checked
+        : element.value;
+
+    if(element.dataset.practice === "normal"){
+      practice.passedNormal = false;
+      practice.passedReply = false;
+    }else{
+      practice.passedReply = false;
+    }
+
+    save();
+  }
+
+  if(element.dataset.exam){
+    const assessment = s.exam[s.person];
+
+    assessment[element.dataset.exam] =
+      element.type === "checkbox"
+        ? element.checked
+        : element.value;
+
+    assessment.saved = false;
+    save();
+  }
+});
+
+document.addEventListener("change",event => {
+  const element = event.target;
+
+  if(element.dataset.action === "person"){
+    s.person = Number(element.value);
+    feedback = "";
+    save();
+    render();
+  }
+
+  if(element.dataset.action === "topic"){
+    s.topic = element.value;
+    feedback = "";
+    save();
+    render();
+  }
+
+  if(element.dataset.score){
+    s.exam[s.person].scores[element.dataset.score] =
+      element.value;
+
+    s.exam[s.person].saved = false;
+    save();
+  }
+
+  if(element.dataset.bind === "players"){
+    setBind("players",element.value);
+
+    if(s.person >= Number(s.players)){
+      s.person = 0;
+    }
+
+    save();
+    render();
+  }
+
+  if(element.id === "importFile"){
+    const file = element.files[0];
+
+    if(!file) return;
+
+    if(file.size > 1000000){
+      alert("備份檔過大，請選擇這個網站匯出的JSON。");
+      element.value = "";
+      return;
+    }
+
+    file.text()
+      .then(text => {
+        const value = JSON.parse(text);
+
+        if(!validState(value)){
+          throw new Error("Invalid backup");
+        }
+
+        if(!confirm(
+          "匯入會取代目前的本機紀錄，確定嗎？"
+        )){
+          return;
+        }
+
+        s = value;
+        save();
+        render();
+      })
+      .catch(() => {
+        alert(
+          "無法讀取備份。請選擇網站匯出的JSON檔。"
+        );
+      })
+      .finally(() => {
+        element.value = "";
+      });
+  }
+});
+
+document.addEventListener("toggle",event => {
+  if(
+    event.target.matches("details[data-help]") &&
+    event.target.open &&
+    s.tab === "practice"
+  ){
+    currentPractice().hints++;
+    save();
+  }
+},true);
+
+render();
+</script>
+</body>
+</html>
